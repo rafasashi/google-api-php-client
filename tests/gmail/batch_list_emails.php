@@ -8,11 +8,11 @@
 
         $list = $messages->getMessages();
 
-            $client->setUseBatch(true);
+        $client->setUseBatch(true);
 
-            $batch = new Google_Http_Batch($client);                
+        $batch = new Google_Http_Batch($client);                
 
-            foreach($list as $message_data){
+        foreach($list as $message_data){
 
                 $message_id = $message_data->getId();
 
@@ -21,6 +21,6 @@
                 $request = $service->users_messages->get($email_id,$message_id,$optParams);
 
                 $batch->add($request, $message_id);                 
-            }
+        }
 
-            $results = $batch->execute();
+        $results = $batch->execute();
